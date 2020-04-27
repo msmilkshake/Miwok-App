@@ -4,10 +4,14 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.media.AudioAttributesCompat;
 import androidx.media.AudioFocusRequestCompat;
@@ -27,7 +31,7 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.words_list);
-    
+        
         mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
@@ -109,6 +113,30 @@ public class ColorsActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         releasePlayer();
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (getParentActivityIntent() == null) {
+                    Log.v("ColorsActivity",
+                            "no ParentActivityMain in the android manifest.");
+                    Toast.makeText(ColorsActivity.this,
+                            "No parent activity",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                    return true;
+                } else {
+                    Toast.makeText(ColorsActivity.this,
+                            "Success",
+                            Toast.LENGTH_SHORT)
+                            .show();
+                    return super.onOptionsItemSelected(item);
+                }
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     
     private void releasePlayer() {
