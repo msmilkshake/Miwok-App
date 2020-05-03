@@ -7,4 +7,5 @@
     <color name="category_family">#379237</color>
     <color name="category_colors">#8800A0</color>
     <color name="category_phrases">#16AFCA</color>
+    <color name="unselected_tab">#A8A19E</color>
 </resources>

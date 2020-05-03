@@ -10,18 +10,15 @@ public class Word {
     public static final int NO_AUDIO = -1;
     
     public Word(String miwokWord, String defaultWord, int imageID, int audioID) {
-        this(miwokWord, defaultWord, imageID);
+        this.miwokWord = miwokWord;
+        this.defaultWord = defaultWord;
+        this.imageID = imageID;
         this.audioID = audioID;
     }
 
     
-    public Word(String miwokWord, String defaultWord, int imageID) {
-        this(miwokWord, defaultWord);
-        this.imageID = imageID;
-    }
-    public Word(String miwokWord, String defaultWord) {
-        this.miwokWord = miwokWord;
-        this.defaultWord = defaultWord;
+    public Word(String miwokWord, String defaultWord, int audioID) {
+        this(miwokWord, defaultWord, NO_IMAGE, audioID);
     }
 
     public String getMiwokWord() {
@@ -43,4 +40,5 @@ public class Word {
     public boolean hasImage() {
         return imageID != NO_IMAGE;
     }
+    
 }
